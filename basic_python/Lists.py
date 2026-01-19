@@ -28,8 +28,33 @@ print(my_list)
 #to remove value at a certain index use .pop()with the value being the index you want value to be removed
 my_list.pop(1)
 print(my_list)
+
 #sorting value from smallest to greatest is done using .sort()
 my_list.sort()
 
+#assingment
+
+# Create a list of 5 animals called zoo
+zoo = ["zebra","lion ","hippo","giraffe","penguin"]
+print(zoo)
+
+#- Delete the animal at the 3rd index.
+zoo.pop(2)
+print(zoo)
+
+#- Append a new animal at the end of the list
+zoo.append("elephant")
+print(zoo)
+
+#- Delete the animal at the beginning of the list.
+zoo.pop(0)
+print(zoo)
+
+#print each value
+for x in zoo:
+    print(x)
+
+#- Print only the first 3 animals
+print(zoo[0:3])
 
 
