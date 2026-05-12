@@ -1,0 +1,17 @@
+INSERT INTO tablename (column1, column2,colum3)
+VALUES('value1',valu2,value3);
+
+GETTING VALUES
+SELECT column from tablename;
+select column1,colum2, colum3 from tablename;
+select * from tablename;
+select * from tablename where column=value;
+
+
+update
+UPDATE tablename SET column1=value1 where primary_column=value;
+
+delete
+DELETE FROM tablename WHERE primarycolumn =value
+
+sqlite tips .mode table to get a view that simulate a table
