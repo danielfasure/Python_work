@@ -1,0 +1,17 @@
+status code operate in series
+100 series code - infromation response processing
+
+200series code  - success the communication and exchange was successfully
+200 -get request good
+201- post request good
+204- change has occured okay so put request
+
+
+300 series code - redirediction occurs furthur action is need
+
+400 serioes code - clients erros : cause on the client side
+401-unathoristed change where the request is coming from unathorised ip \credintial
+404- client request not found
+422- symatic error found on client side
+
+500 series code - server error where the code is being ran there an fault there
