@@ -1,0 +1,16 @@
+# from the databade file import the base that is meant to be declerative_base from sqlachemy.oxt.declarative
+#the class that is model now inherit the base
+
+class user_model (Base)
+ __tablename__ =  'user_table' # __tablename__ will allow you to define the name
+ from sqlalchemy yo can then import the attritubutes used for a sql database EXAMPLE Column, Integer,String,boolean
+
+ #now when define the constructor attrubuite you can pass along those classes
+ '''
+    id = Column(Integer,primary_key=True,index=True) #we import column class and integer class to tell the database to define as header for the colums also can add parameter to say that this colums is the primary key so all values should be unique
+    username = Column(String(50))
+    email = Column(String(50),nullable=False)
+    paid = Column(Boolean,default=False)
+ '''
+ for the id attrubute you can define the primary key which the application will only accept unqique values for it
+ -you can define the max number of lenght and what you what the default value to be if not defined else where
