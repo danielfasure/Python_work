@@ -1,13 +1,13 @@
-from fastapi import FastAPI
+from fastapi import APIRouter
 from models.cake_user import *
 from models.cake_user_pydantics import *
 
 
-app = FastAPI()
+router = APIRouter()
 
 cakes_user = sample_user.sample_cake_users
 
-@app.put("/cakes/")
+@router.put("/cakes/")
 async def updatebook (updateusers: cakeUserValidate):
     for i in range(len(cakes_user)):
         if cakes_user[i].id == updateusers.id:

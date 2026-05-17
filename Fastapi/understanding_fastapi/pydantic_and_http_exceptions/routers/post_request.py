@@ -1,19 +1,19 @@
 from models.cake_user import *
 from models.cake_user_pydantics import *
-from fastapi import Body, FastAPI
+from fastapi import Body, APIRouter
 
 
 
-app = FastAPI()
+router = APIRouter()
 cakes= sample_user.sample_cake_users
 
-@app.get("/user/)")
+@router.get("/user/)")
 async def get_user():
     return cakes
 
-@app.post("/cake")
+@router.post("/cake")
 async  def adding_validate_data(cake_user1: cakeUserValidate):#you pass in the pydtanic class to be validate
-    validate_user_addtion = cake_user(**cake_user1.dict()) # if valdate create another user and add it to the databse
+    validate_user_addtion = cake_user(**cake_user1.model_dump()) # if valdate create another user and add it to the databse
     cakes.append(add_user_id(validate_user_addtion))
 
 

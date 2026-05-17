@@ -1,0 +1,15 @@
+#used for data modeling and error handling 
+#make a class that model the attrubutes of the class you want to validate 
+#that pydatic class will inherit the class called basemodel 
+#example #age : int =Field (gt =-1, lt= 300)  # value that can input need to be between zero and 299
+
+#now that setup when called by the request it most used for post and delete request
+#so the validate object is the created 
+#if that pass the pydantic test then it pass  through as the object you want it be 
+example def createuser(new_user: user_validate_class):
+created_user = User_class(**new_user.model_dump()) .this will tell the fast api to run the pydantic which will onload the attrubute to the constructor user class 
+
+#when you move onto the hashing part you then need to pass it in as indivdual attrubitues
+#create_user = user_class(username = user_validate_class.username
+                             _hash_password = brcrypt[user_validate_class.password])
+

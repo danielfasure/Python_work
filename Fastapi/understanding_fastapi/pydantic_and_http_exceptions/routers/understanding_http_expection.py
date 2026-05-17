@@ -2,7 +2,7 @@
 #you can import http exception, and it allows for a status code to be displayed when user input an incorrect input or search that pass the validation
 #for put and delete request that are succescfull using starlette you can use status class to give user a response to say user updated or deleted
 
-from fastapi import FastAPI,Path,Query,HTTPException
+from fastapi import APIRouter,Path,Query,HTTPException
 
 
 from models.cake_user import *
@@ -10,17 +10,18 @@ from models.cake_user_pydantics import *
 from starlette import status
 
 cakes = sample_user.sample_cake_users
-app = FastAPI()
-@app.get("/cake/",status_code=status.HTTP_200_OK)# adding the parameter status code when the fast api read this annotation it knows that a succesfull get should display 200
+router = APIRouter()
+
+@router.get("/cake/",status_code=status.HTTP_200_OK)# adding the parameter status code when the fast api read this annotation it knows that a succesfull get should display 200
 async def get_user_by_title(userinput:str = Query(min_length = 0)):#query search that return exception if user pass validation
     user_found = False
     cakes_user = []
-    for user in cakes:
-        if user.title==userinput:
+    for x in range(len(cakes)):
+        if cakes[x].title==userinput:
             user_found = True
-            cakes_user.append(user)
+            cakes_user.append(cakes[x])
     if not user_found:
-        raise HTTPException(status_code=404,detail='user is not present in list please type another id ')#400 mean client error in this case searching for something out of the range
+        raise HTTPException(status_code=404,detail=f'user {userinput} is not present in list please type another id ')#400 mean client error in this case searching for something out of the range
 
     else:
         return cakes_user
@@ -35,14 +36,14 @@ def createcke_id(cakeuser:cake_user):
 
 
 
-@app.post("/cake/",status_code=status.HTTP_201_CREATED)
+@router.post("/cake/",status_code=status.HTTP_201_CREATED)
 async def create_user_input(cakesuser: cakeUserValidate):
-    created_user = cake_user(cakesuser.dict())
+    created_user = cake_user(**cakesuser.model_dump())
     cakes.append(createcke_id(created_user))
 
 
 
-@app.put("/cake_cake_update",status_code=status.HTTP_202_ACCEPTED)
+@router.put("/cake_cake_update",status_code=status.HTTP_202_ACCEPTED)
 async def update_user_input (cake_user: cakeUserValidate):
     found_user = False
     for x in range(len(cakes)):
@@ -53,7 +54,7 @@ async def update_user_input (cake_user: cakeUserValidate):
         raise HTTPException(status_code=404,detail='user is not present in list and cannot be updated ')
 
 
-@app.delete("/cake_cake_delete",status_code=status.HTTP_202_ACCEPTED)
+@router.delete("/cake_cake_delete",status_code=status.HTTP_202_ACCEPTED)
 async def delete_user_input (cake_user: cakeUserValidate):
     found_user = False
     for x in range(len(cakes)):
@@ -66,7 +67,7 @@ async def delete_user_input (cake_user: cakeUserValidate):
 
 
 
-@app.get("/cake/{user_id}",status_code=status.HTTP_200_OK)
+@router.get("/cake/{user_id}",status_code=status.HTTP_200_OK)
 async def get_userbyid(user_id:int = Path(gt =-1)):
     for user in cakes:
         if user.id==user_id:
