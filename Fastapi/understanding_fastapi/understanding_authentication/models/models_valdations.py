@@ -13,3 +13,7 @@ class user_validate(BaseModel):
     password : str
     has_paid : bool
     role : str
+
+class Token(BaseModel):
+    access_token: str
+    token_type:str

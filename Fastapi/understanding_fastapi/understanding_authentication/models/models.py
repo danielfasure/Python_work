@@ -20,3 +20,4 @@ class User(Base):
     hash_password = Column(String)
     has_paid = Column(Boolean,default=False)
     role = Column(String)
+

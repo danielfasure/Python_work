@@ -1,0 +1,10 @@
+#an authorauation method used to tramsit data and info between two parties using json objects
+#jwt stand for jason web token structure 
+#jwt is define be it three seperate part 
+#example aa.bb.cc
+#a is the hearder :contain two parts 'alg' and 'typ' 
+#b is the payload : contains the data and the data contains claims : claims are define in three ways
+#register:  public: private:
+#c is the signature: 
+#install new library 
+#pip install 
